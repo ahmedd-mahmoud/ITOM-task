@@ -7,7 +7,7 @@ type LoginFormType = {
   password: string | null;
 };
 
-const message = useMessage();
+const { login } = useAuth();
 
 const formRef = ref<FormInst | null>(null);
 const loginForm = ref<LoginFormType>({
@@ -47,10 +47,9 @@ const handleLogin = (e: MouseEvent) => {
   e.preventDefault();
   formRef.value?.validate((errors: Array<FormValidationError> | undefined) => {
     if (!errors) {
-      message.success("Login successful");
+      login(loginForm.value.email!, loginForm.value.password!);
     } else {
       console.log(errors);
-      message.error("Login failed");
     }
   });
 };
@@ -63,7 +62,7 @@ const handleLogin = (e: MouseEvent) => {
     :rules="rules"
     class="flex flex-col gap-3 w-1/3"
   >
-    <h1 class="text-2xl font-bold text-white self-center pb-4">Login</h1>
+    <h1 class="text-2xl font-bold self-center pb-4">Login</h1>
     <n-form-item path="email" label="Email">
       <n-input v-model:value="loginForm.email" @keydown.enter.prevent />
     </n-form-item>
