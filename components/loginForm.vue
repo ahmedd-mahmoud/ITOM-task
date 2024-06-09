@@ -69,7 +69,11 @@ const handleLogin = (e: MouseEvent) => {
       <n-input v-model:value="loginForm.email" />
     </n-form-item>
     <n-form-item path="password" label="Password">
-      <n-input v-model:value="loginForm.password" type="password" />
+      <n-input
+        v-model:value="loginForm.password"
+        type="password"
+        show-password-on="click"
+      />
     </n-form-item>
 
     <n-button
