@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import type { FormInst, FormValidationError, FormRules } from "naive-ui";
-import { useMessage, NForm, NFormItem, NButton, NInput } from "naive-ui";
+import { NForm, NFormItem, NButton, NInput } from "naive-ui";
+import useUser from "~/composables/useUser";
 
 type LoginFormType = {
   email: string | null;
   password: string | null;
 };
 
-const { login } = useAuth();
+// const { login } = useAuth();
+const { login } = useUser();
 
 const formRef = ref<FormInst | null>(null);
 const loginForm = ref<LoginFormType>({
@@ -62,16 +64,12 @@ const handleLogin = (e: MouseEvent) => {
     :rules="rules"
     class="flex flex-col gap-3 w-1/3"
   >
-    <h1 class="text-2xl font-bold self-center pb-4">Login</h1>
+    <h1 class="text-4xl font-bold self-center pb-4">Welcome</h1>
     <n-form-item path="email" label="Email">
-      <n-input v-model:value="loginForm.email" @keydown.enter.prevent />
+      <n-input v-model:value="loginForm.email" />
     </n-form-item>
     <n-form-item path="password" label="Password">
-      <n-input
-        v-model:value="loginForm.password"
-        type="password"
-        @keydown.enter.prevent
-      />
+      <n-input v-model:value="loginForm.password" type="password" />
     </n-form-item>
 
     <n-button
