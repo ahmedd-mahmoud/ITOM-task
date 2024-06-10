@@ -3,7 +3,7 @@
 <template>
   <nuxt-layout name="dashboard">
     <div>
-      <p>Dashboard</p>
+      <p>Alerts</p>
     </div>
   </nuxt-layout>
 </template>
