@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import { useAppInit } from "~/composables/states/useAppInit";
 import { NLayout, NLayoutSider } from "naive-ui";
 
 const collapsed = ref(false);
+
+const initApp = useAppInit();
+
+await initApp();
 </script>
 
 <template>
