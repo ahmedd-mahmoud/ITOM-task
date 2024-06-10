@@ -11,18 +11,12 @@ const options = [
     label: user.value?.name,
     key: "name",
     disabled: true,
-    icon: () =>
-      h(NIcon, null, {
-        default: () => h(UserAvatar),
-      }),
+    icon: renderIcon(UserAvatar),
   },
   {
     label: "Logout",
     key: "logout",
-    icon: () =>
-      h(NIcon, null, {
-        default: () => h(LogOutOutline),
-      }),
+    icon: renderIcon(LogOutOutline),
   },
 ];
 
@@ -38,8 +32,10 @@ const handleSelect = (key: string) => {
 </script>
 
 <template>
-  <div class="flex justify-between w-full py-2 px-5">
-    <div class="w-1/5">
+  <div
+    class="flex justify-end sm:justify-between w-full py-4 px-5 border-b border-neutral-500 border-opacity-40"
+  >
+    <div class="w-64 lg:w-80 hidden sm:flex">
       <n-input round placeholder="Search">
         <template #prefix>
           <n-icon :component="Search" />
