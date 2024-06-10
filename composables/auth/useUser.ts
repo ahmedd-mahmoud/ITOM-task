@@ -1,12 +1,13 @@
 import { useMessage } from "naive-ui";
 import usePocketbase from "~/composables/server/usePocketbase";
+import type { UsersResponse } from "~/types/api";
 
 export default function () {
   const client = usePocketbase();
   const message = useMessage();
   const router = useRouter();
 
-  const user = computed(() => client.authStore?.model);
+  const user = computed<UsersResponse>(() => client.authStore?.model);
   const isLoggedIn = computed(() => client.authStore?.isValid);
 
   const login = async (email: string, pass: string) => {
