@@ -1,5 +1,5 @@
 import { useMessage } from "naive-ui";
-import usePocketbase from "./usePocketbase";
+import usePocketbase from "~/composables/server/usePocketbase";
 
 export default function () {
   const client = usePocketbase();

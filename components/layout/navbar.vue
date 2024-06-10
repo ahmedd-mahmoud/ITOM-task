@@ -2,7 +2,7 @@
 import { NInput, NIcon, NDropdown } from "naive-ui";
 import { Search, LogOutOutline, Notifications } from "@vicons/ionicons5";
 import { UserAvatarFilled, UserAvatar } from "@vicons/carbon";
-import useUser from "~/composables/useUser";
+import useUser from "~/composables/auth/useUser";
 
 const { logout, user } = useUser();
 

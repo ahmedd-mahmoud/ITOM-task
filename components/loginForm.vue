@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FormInst, FormValidationError, FormRules } from "naive-ui";
 import { NForm, NFormItem, NButton, NInput } from "naive-ui";
-import useUser from "~/composables/useUser";
+import useUser from "~/composables/auth/useUser";
 
 type LoginFormType = {
   email: string | null;
