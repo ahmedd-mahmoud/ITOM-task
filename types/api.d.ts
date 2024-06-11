@@ -5,6 +5,7 @@ import {
   TicketPriorityOptions,
   TicketActivityStatusOptions,
   TicketStatusOptions,
+  DeviceTypeOptions,
 } from "./enums";
 
 export enum Collections {
@@ -45,6 +46,7 @@ export type DeviceRecord = {
   name: RecordIdString;
   availability: DeviceAvailabilityOptions;
   maintenanceTime: string;
+  type: DeviceTypeOptions;
 };
 
 export type AlertRecord = {

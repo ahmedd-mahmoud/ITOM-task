@@ -4,6 +4,13 @@ export enum DeviceAvailabilityOptions {
   UNDER_MAINTENANCE = "under_maintenance",
 }
 
+export enum DeviceTypeOptions {
+  PC = "pc",
+  SERVER = "server",
+  MAC = "mac",
+  LINUX = "linux",
+}
+
 export enum AlertSeverityOptions {
   INFO = "info",
   WARNING = "warning",
