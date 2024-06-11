@@ -10,12 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "chart.js": "^4.4.3",
     "firebase": "^10.12.2",
     "nuxt": "^3.11.2",
     "nuxt-vuefire": "^1.0.2",
     "nuxtjs-naive-ui": "^1.0.2",
     "pocketbase": "^0.21.3",
     "vue": "^3.4.27",
+    "vue-chart-3": "^3.1.8",
     "vue-router": "^4.3.2",
     "vuefire": "^3.1.23"
   },

@@ -5,7 +5,7 @@ import { NConfigProvider, NMessageProvider, darkTheme } from "naive-ui";
 <template>
   <n-config-provider
     :theme="darkTheme"
-    class="flex min-h-screen w-full relative text-white"
+    class="flex min-h-screen w-full relative bg-[#101014] text-white"
   >
     <n-message-provider>
       <slot></slot>
