@@ -41,7 +41,9 @@ export default function () {
     try {
       const res = await client
         .collection("tickets")
-        .getFullList<TicketResponse>(50);
+        .getFullList<TicketResponse>(50, {
+          sort: "-created",
+        });
       tickets.value = res;
     } catch (error) {
       console.error("Failed to get tickets");

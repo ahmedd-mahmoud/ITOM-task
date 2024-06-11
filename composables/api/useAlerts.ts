@@ -36,6 +36,7 @@ export default function () {
         .collection("alerts")
         .getFullList<AlertResponse>(50, {
           expand: "device",
+          sort: "-created",
         });
       alerts.value = res;
     } catch (error) {
