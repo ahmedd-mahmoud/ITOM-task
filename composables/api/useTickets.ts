@@ -1,7 +1,11 @@
 import type { TicketResponse } from "~/types/api";
 import { useMessage } from "naive-ui";
 import usePocketBase from "~/composables/server/usePocketbase";
-import { TicketStatusOptions, TicketPriorityOptions } from "~/types/enums";
+import {
+  TicketActivityStatusOptions,
+  TicketPriorityOptions,
+  TicketStatusOptions,
+} from "~/types/enums";
 
 export default function () {
   const client = usePocketBase();
@@ -13,14 +17,17 @@ export default function () {
   const createTicket = async (
     title: string,
     priority: TicketPriorityOptions,
-    assignedTechnician?: string
+    dueDate: string,
+    assignedTechnician: string = ""
   ) => {
     try {
       await client.collection("tickets").create({
         title,
         priority,
-        activityStatus: TicketStatusOptions.UNREAD,
-        assignedTechnician: assignedTechnician || "",
+        dueDate,
+        assignedTechnician,
+        activityStatus: TicketActivityStatusOptions.UNREAD,
+        status: TicketStatusOptions.OPEN,
       });
 
       message.success("Ticket created successfully");

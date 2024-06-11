@@ -22,8 +22,14 @@ export enum TicketPriorityOptions {
   CRITICAL = "critical",
 }
 
-export enum TicketStatusOptions {
+export enum TicketActivityStatusOptions {
   READ = "read",
   UNREAD = "unread",
   AWAITING = "awaiting",
+}
+
+export enum TicketStatusOptions {
+  OPEN = "open",
+  PENDING = "pending",
+  OVERDUE = "overdue",
 }

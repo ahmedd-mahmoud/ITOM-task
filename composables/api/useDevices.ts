@@ -10,12 +10,12 @@ export default function () {
   const devices = useState<DeviceResponse[]>("devices", () => []);
 
   // Create a new device
-  const createDevice = async (name: string, maintenanceTime?: string) => {
+  const createDevice = async (name: string, maintenanceTime: string = "") => {
     try {
       await client.collection("devices").create({
         name,
+        maintenanceTime,
         availability: DeviceAvailabilityOptions.ONLINE,
-        maintenanceTime: maintenanceTime || "",
       });
 
       message.success("Device created successfully");

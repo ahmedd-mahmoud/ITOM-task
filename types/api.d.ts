@@ -3,6 +3,7 @@ import {
   AlertSeverityOptions,
   AlertStatusOptions,
   TicketPriorityOptions,
+  TicketActivityStatusOptions,
   TicketStatusOptions,
 } from "./enums";
 
@@ -56,8 +57,10 @@ export type AlertRecord = {
 export type TicketRecord = {
   title: string;
   priority: TicketPriorityOptions;
-  activityStatus: TicketStatusOptions;
+  activityStatus: TicketActivityStatusOptions;
+  status: TicketStatusOptions;
   assignedTechnician: string;
+  dueDate: IsoDateString;
 };
 
 export type DeviceExpand = {
@@ -73,7 +76,8 @@ export type DeviceResponse = DeviceRecord & BaseSystemFields<DeviceExpand>;
 
 export type AlertResponse = AlertRecord & BaseSystemFields<AlertExpand>;
 
-export type Response<E = DefaultExpand> = TicketRecord & BaseSystemFields<E>;
+export type TicketResponse<E = DefaultExpand> = TicketRecord &
+  BaseSystemFields<E>;
 
 export type UsersResponse<E = DefaultExpand> = UserRecord & AuthSystemFields<E>;
 

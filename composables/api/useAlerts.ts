@@ -13,12 +13,12 @@ export default function () {
   const createAlert = async (
     deviceId: string,
     severity: AlertSeverityOptions,
-    details?: string
+    details: string = ""
   ) => {
     try {
       await client.collection("alerts").create({
         device: deviceId,
-        details: details || "",
+        details,
         severity,
         status: AlertStatusOptions.PENDING,
       });
