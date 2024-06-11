@@ -11,5 +11,14 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".scrollbar-hidden::-webkit-scrollbar": {
+          display: "none",
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };
