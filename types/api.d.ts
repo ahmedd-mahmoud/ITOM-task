@@ -61,7 +61,7 @@ export type TicketRecord = {
 };
 
 export type DeviceExpand = {
-  "alerts(device)": AlertResponse[];
+  alerts_via_device: AlertResponse[];
 };
 
 export type AlertExpand = {
@@ -73,8 +73,7 @@ export type DeviceResponse = DeviceRecord & BaseSystemFields<DeviceExpand>;
 
 export type AlertResponse = AlertRecord & BaseSystemFields<AlertExpand>;
 
-export type TicketResponse<E = DefaultExpand> = TicketRecord &
-  BaseSystemFields<E>;
+export type Response<E = DefaultExpand> = TicketRecord & BaseSystemFields<E>;
 
 export type UsersResponse<E = DefaultExpand> = UserRecord & AuthSystemFields<E>;
 

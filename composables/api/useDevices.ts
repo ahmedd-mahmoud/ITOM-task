@@ -30,7 +30,7 @@ export default function () {
       const res = await client
         .collection("devices")
         .getFullList<DeviceResponse>(50, {
-          expand: "alerts(device)",
+          expand: "alerts_via_device",
         });
       devices.value = res;
     } catch (error) {
