@@ -6,6 +6,7 @@
         <div class="flex flex-col gap-4">
           <dashboard-alerts-status />
           <dashboard-alerts-recent-alerts />
+          <dashboard-devices-monitor />
         </div>
         <div class="flex flex-col gap-4">
           <dashboard-tickets-status />

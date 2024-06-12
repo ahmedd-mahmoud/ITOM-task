@@ -29,7 +29,7 @@ await initApp();
       <n-layout>
         <div class="flex flex-col gap-2 w-full">
           <layout-navbar />
-          <main class="flex flex-grow px-6">
+          <main class="flex flex-grow px-6 lg:h-[631px] overflow-auto">
             <slot />
           </main>
         </div>

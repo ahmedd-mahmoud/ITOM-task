@@ -40,3 +40,10 @@ export enum TicketStatusOptions {
   PENDING = "pending",
   OVERDUE = "overdue",
 }
+
+export enum AnalyticsType {
+  BarChart = "bar",
+  LineChart = "line",
+  PieChart = "pie",
+  Card = "card",
+}
