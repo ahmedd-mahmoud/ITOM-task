@@ -11,6 +11,7 @@
         <div class="flex flex-col gap-4">
           <dashboard-tickets-status />
           <dashboard-tickets-critical-tickets />
+          <dashboard-tickets-ticket-activity />
         </div>
       </div>
     </div>
