@@ -67,14 +67,14 @@ const columns = [
 </script>
 
 <template>
-  <div class="flex flex-col h-64 gap-4">
+  <div class="flex flex-col h-72 gap-4">
     <h2 class="text-xl">Critical and Overdue Tickets</h2>
     <div class="flex flex-col gap-8 capitalize">
       <n-data-table
         :columns="columns"
         :data="tableData"
         :bordered="false"
-        :max-height="140"
+        :max-height="165"
         virtual-scroll
       />
     </div>

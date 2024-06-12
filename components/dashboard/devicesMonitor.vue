@@ -38,8 +38,7 @@ const chartData = ref({
     {
       label: "Online",
       data: onlineDevices.value,
-      backgroundColor: ["#00ff00", "#00cc00", "#009900", "#006600"],
-      borderColor: "#006600",
+      backgroundColor: "#006600",
       borderWidth: 2,
       borderRadius: Number.MAX_VALUE,
       barThickness: 30,
@@ -47,8 +46,7 @@ const chartData = ref({
     {
       label: "Offline",
       data: offlineDevices.value,
-      backgroundColor: ["#ff6666", "#ff4444", "#ff3333", "#ff0000"],
-      borderColor: "#ff0000",
+      backgroundColor: "#ff0000",
       borderWidth: 2,
       borderRadius: Number.MAX_VALUE,
       barThickness: 30,
@@ -64,7 +62,7 @@ const options = computed<ChartOptions<AnalyticsType.BarChart>>(() => ({
     },
     legend: {
       display: true,
-      position: "bottom",
+      position: "top",
     },
   },
   responsive: true,

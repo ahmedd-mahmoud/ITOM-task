@@ -7,10 +7,10 @@ const { alerts } = useAlerts();
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 h-64">
+  <div class="flex flex-col gap-4 h-72">
     <h2 class="text-xl">Recent Alerts</h2>
     <div
-      class="flex flex-col gap-8 overflow-auto scrollbar-hidden bg-[#26262a] p-4"
+      class="flex flex-col gap-8 overflow-auto scrollbar-hidden bg-[#18181c] rounded-lg p-4"
     >
       <div v-for="alert in alerts" class="capitalize flex flex-col gap-1">
         <div class="flex items-center gap-2 font-semibold">
