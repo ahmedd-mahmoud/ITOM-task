@@ -3,15 +3,15 @@ import { TicketStatusOptions } from "~/types/enums";
 
 const { tickets } = useTickets();
 
-const statusCount = {
+const statusCount = computed(() => ({
   [TicketStatusOptions.OPEN]: { count: 0, color: "bg-blue-500" },
   [TicketStatusOptions.PENDING]: { count: 0, color: "bg-yellow-300" },
   [TicketStatusOptions.OVERDUE]: { count: 0, color: "bg-red-600" },
-};
+}));
 
 tickets.value.forEach((item) => {
-  if (statusCount[item.status] !== undefined) {
-    statusCount[item.status].count++;
+  if (statusCount.value[item.status] !== undefined) {
+    statusCount.value[item.status].count++;
   }
 });
 </script>

@@ -3,15 +3,15 @@ import { AlertSeverityOptions } from "~/types/enums";
 
 const { alerts } = useAlerts();
 
-const severityCount = {
+const severityCount = computed(() => ({
   [AlertSeverityOptions.INFO]: { count: 0, color: "bg-blue-500" },
   [AlertSeverityOptions.WARNING]: { count: 0, color: "bg-yellow-300" },
   [AlertSeverityOptions.CRITICAL]: { count: 0, color: "bg-red-600" },
-};
+}));
 
 alerts.value.forEach((item) => {
-  if (severityCount[item.severity] !== undefined) {
-    severityCount[item.severity].count++;
+  if (severityCount.value[item.severity] !== undefined) {
+    severityCount.value[item.severity].count++;
   }
 });
 </script>
