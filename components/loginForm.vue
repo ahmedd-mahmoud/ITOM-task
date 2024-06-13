@@ -8,7 +8,6 @@ type LoginFormType = {
   password: string | null;
 };
 
-// const { login } = useAuth();
 const { login } = useUser();
 
 const formRef = ref<FormInst | null>(null);
