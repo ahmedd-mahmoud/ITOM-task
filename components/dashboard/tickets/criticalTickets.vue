@@ -21,7 +21,7 @@ const tableData = computed(() =>
     )
     .map((item) => {
       return {
-        details: item.title,
+        title: item.title,
         priority: item.priority,
         technician: item.assignedTechnician || "Unassigned",
         due_date: item.dueDate,
@@ -31,8 +31,8 @@ const tableData = computed(() =>
 
 const columns = [
   {
-    title: "Details",
-    key: "details",
+    title: "Title",
+    key: "title",
   },
   {
     title: "Priority",
