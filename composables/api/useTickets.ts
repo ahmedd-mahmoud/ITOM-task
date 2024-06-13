@@ -14,23 +14,12 @@ export default function () {
   const tickets = useState<TicketResponse[]>("tickets", () => []);
 
   // Create a new ticket
-  const createTicket = async (
-    title: string,
-    priority: TicketPriorityOptions,
-    dueDate: string,
-    assignedTechnician: string = ""
-  ) => {
+  const createTicket = async (data: Object) => {
     try {
-      await client.collection("tickets").create({
-        title,
-        priority,
-        dueDate,
-        assignedTechnician,
-        activityStatus: TicketActivityStatusOptions.UNREAD,
-        status: TicketStatusOptions.OPEN,
-      });
+      const res = await client.collection("tickets").create(data);
 
       message.success("Ticket created successfully");
+      return res;
     } catch (error) {
       message.error("Failed to create ticket");
     }
@@ -53,9 +42,12 @@ export default function () {
   // Update a ticket
   const updateTicket = async (ticketId: string, data: Object) => {
     try {
-      await client.collection("tickets").update<TicketResponse>(ticketId, data);
+      const res = await client
+        .collection("tickets")
+        .update<TicketResponse>(ticketId, data);
 
       message.success("Ticket updated successfully");
+      return res;
     } catch (error) {
       message.error("Failed to update ticket");
     }

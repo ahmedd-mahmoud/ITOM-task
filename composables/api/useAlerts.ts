@@ -10,20 +10,12 @@ export default function () {
   const alerts = useState<AlertResponse[]>("alerts", () => []);
 
   // Create a new device
-  const createAlert = async (
-    deviceId: string,
-    severity: AlertSeverityOptions,
-    details: string = ""
-  ) => {
+  const createAlert = async (data: Object) => {
     try {
-      await client.collection("alerts").create({
-        device: deviceId,
-        details,
-        severity,
-        status: AlertStatusOptions.PENDING,
-      });
+      const res = await client.collection("alerts").create(data);
 
       message.success("Alert created successfully");
+      return res;
     } catch (error) {
       message.error("Failed to create alert");
     }
@@ -47,9 +39,12 @@ export default function () {
   // Update a device
   const updateAlert = async (alertId: string, data: Object) => {
     try {
-      await client.collection("alerts").update<AlertResponse>(alertId, data);
+      const res = await client
+        .collection("alerts")
+        .update<AlertResponse>(alertId, data);
 
       message.success("Alert updated successfully");
+      return res;
     } catch (error) {
       message.error("Failed to update alert");
     }

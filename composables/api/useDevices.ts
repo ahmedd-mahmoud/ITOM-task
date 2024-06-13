@@ -1,7 +1,7 @@
 import type { DeviceResponse } from "~/types/api";
 import { useMessage } from "naive-ui";
 import usePocketBase from "~/composables/server/usePocketbase";
-import { DeviceAvailabilityOptions } from "~/types/enums";
+import { DeviceAvailabilityOptions, DeviceTypeOptions } from "~/types/enums";
 
 export default function () {
   const client = usePocketBase();
@@ -10,15 +10,12 @@ export default function () {
   const devices = useState<DeviceResponse[]>("devices", () => []);
 
   // Create a new device
-  const createDevice = async (name: string, maintenanceTime: string = "") => {
+  const createDevice = async (data: Object) => {
     try {
-      await client.collection("devices").create({
-        name,
-        maintenanceTime,
-        availability: DeviceAvailabilityOptions.ONLINE,
-      });
+      const res = await client.collection("devices").create(data);
 
       message.success("Device created successfully");
+      return res;
     } catch (error) {
       message.error("Failed to create device");
     }
@@ -41,11 +38,26 @@ export default function () {
   // Update a device
   const updateDevice = async (deviceId: string, data: Object) => {
     try {
-      await client.collection("devices").update<DeviceResponse>(deviceId, data);
+      const res = await client
+        .collection("devices")
+        .update<DeviceResponse>(deviceId, data);
 
       message.success("Device updated successfully");
+      return res;
     } catch (error) {
       message.error("Failed to update device");
+    }
+  };
+
+  // Delete a device
+  const deleteDevice = async (deviceId: string) => {
+    try {
+      const res = await client.collection("devices").delete(deviceId);
+
+      message.success("Device delete successfully");
+      return res;
+    } catch (error) {
+      message.error("Failed to delete device");
     }
   };
 
@@ -76,6 +88,7 @@ export default function () {
     createDevice,
     fetchDevices,
     updateDevice,
+    deleteDevice,
     subscribeDevice,
     unsubscribeDevice,
   };
