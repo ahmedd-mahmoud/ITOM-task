@@ -14,6 +14,10 @@ const handleEdit = (ticket: any) => {
   ticketIdToEdit.value = ticket.id;
   editModal.value = true;
 };
+const handleAdd = () => {
+  ticketIdToEdit.value = "";
+  addModal.value = true;
+};
 
 const tableData = computed(() =>
   tickets.value.map((ticket) => {
@@ -97,7 +101,7 @@ const columns = [
         {
           bordered: false,
           type:
-            row.status === "Open"
+            row.status === "open"
               ? "info"
               : row.status === "pending"
                 ? "warning"
@@ -134,7 +138,7 @@ const columns = [
     <div class="flex flex-col w-full gap-8 capitalize">
       <div class="flex w-full items-center pt-4 justify-between">
         <h1 class="text-3xl">Tickets</h1>
-        <n-button type="primary" size="medium" @click="addModal = true">
+        <n-button type="primary" size="medium" @click="handleAdd">
           Add Ticket
         </n-button>
       </div>

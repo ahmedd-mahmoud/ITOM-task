@@ -6,6 +6,7 @@ import {
   NFormItemGi,
   NInput,
   NSelect,
+  NDatePicker,
   type FormInst,
 } from "naive-ui";
 import {
@@ -29,7 +30,7 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
-const { createTicket, updateTicket, tickets, fetchTickets } = useTickets();
+const { createTicket, updateTicket, tickets } = useTickets();
 
 const ticketToEdit = computed(() =>
   tickets.value.find((ticket) => ticket.id === props.ticketIdToEdit)
@@ -37,38 +38,52 @@ const ticketToEdit = computed(() =>
 
 const formRef = ref<FormInst | null>(null);
 const model = ref({
-  name: ticketToEdit.value?.name || "",
-  availability: ticketToEdit.value?.availability || "",
-  type: ticketToEdit.value?.type || "",
+  title: ticketToEdit.value?.title || "",
+  priority: ticketToEdit.value?.priority || "",
+  assignedTechnician: ticketToEdit.value?.assignedTechnician || "",
+  dueDate: new Date(ticketToEdit.value?.dueDate || "").getTime(),
+  activityStatus: ticketToEdit.value?.activityStatus || "",
+  status: ticketToEdit.value?.status || "",
 });
 
-const typeOptions = Object.values(TicketPriorityOptions).map((status) => ({
+const priorityOptions = Object.values(TicketPriorityOptions).map((status) => ({
   label: status,
   value: status,
 }));
-const availabilityOptions = Object.values(TicketActivityStatusOptions).map(
+
+const activityStatusOptions = Object.values(TicketActivityStatusOptions).map(
   (status) => ({
     label: status,
     value: status,
   })
 );
 
+const statusOptions = Object.values(TicketStatusOptions).map((status) => ({
+  label: status,
+  value: status,
+}));
+
 const rules = {
-  name: {
+  title: {
     required: true,
     trigger: ["blur", "input"],
-    message: "Please input ticket name",
+    message: "Please input ticket title",
   },
 
-  availability: {
+  priority: {
     required: true,
     trigger: ["blur", "change"],
-    message: "Please select ticket availability",
+    message: "Please select ticket priority",
   },
-  type: {
+  activityStatus: {
     required: true,
     trigger: ["blur", "change"],
-    message: "Please select ticket type",
+    message: "Please select ticket activity status",
+  },
+  status: {
+    required: true,
+    trigger: ["blur", "change"],
+    message: "Please select ticket status",
   },
 };
 
@@ -77,7 +92,10 @@ const handleSave = async (e: MouseEvent) => {
   formRef.value?.validate(async (errors) => {
     if (!errors) {
       if (props.ticketFormModalType === "edit" && ticketToEdit.value) {
-        const res = await updateTicket(props.ticketIdToEdit, model.value);
+        const res = await updateTicket(props.ticketIdToEdit, {
+          ...model.value,
+          dueDate: new Date(model.value.dueDate).toISOString(),
+        });
         tickets.value = tickets.value.map((ticket) => {
           if (ticket.id === res?.id) {
             return res;
@@ -117,26 +135,36 @@ const handleSave = async (e: MouseEvent) => {
       label-placement="top"
     >
       <n-grid :span="24" :x-gap="24">
-        <n-form-item-gi :span="24" label="Ticket Name" path="name">
-          <n-input v-model:value="model.name" placeholder="Ticket Name" />
+        <n-form-item-gi :span="24" label="Ticket Title" path="title">
+          <n-input v-model:value="model.title" placeholder="Ticket Title" />
         </n-form-item-gi>
 
-        <n-form-item-gi
-          :span="12"
-          label="Ticket Availability"
-          path="availability"
-        >
+        <n-form-item-gi :span="12" label="Ticket Priority" path="priority">
           <n-select
-            v-model:value="model.availability"
-            placeholder="Select availability"
-            :options="availabilityOptions"
+            v-model:value="model.priority"
+            placeholder="Select priority"
+            :options="priorityOptions"
           />
         </n-form-item-gi>
-        <n-form-item-gi :span="12" label="Ticket Type" path="type">
+        <n-form-item-gi :span="12" label="Ticket Due Date" path="dueDate">
+          <n-date-picker v-model:value="model.dueDate" type="datetime" />
+        </n-form-item-gi>
+        <n-form-item-gi
+          :span="12"
+          label="Ticket Activity status"
+          path="activityStatus"
+        >
           <n-select
-            v-model:value="model.type"
-            placeholder="Select type"
-            :options="typeOptions"
+            v-model:value="model.activityStatus"
+            placeholder="Select activityStatus"
+            :options="activityStatusOptions"
+          />
+        </n-form-item-gi>
+        <n-form-item-gi :span="12" label="Ticket status" path="status">
+          <n-select
+            v-model:value="model.status"
+            placeholder="Select status"
+            :options="statusOptions"
           />
         </n-form-item-gi>
       </n-grid>
