@@ -41,7 +41,9 @@ const model = ref({
   title: ticketToEdit.value?.title || "",
   priority: ticketToEdit.value?.priority || "",
   assignedTechnician: ticketToEdit.value?.assignedTechnician || "",
-  dueDate: new Date(ticketToEdit.value?.dueDate || "").getTime(),
+  dueDate:
+    new Date(ticketToEdit.value?.dueDate || "").getTime() ||
+    new Date().getTime(),
   activityStatus: ticketToEdit.value?.activityStatus || "",
   status: ticketToEdit.value?.status || "",
 });
@@ -103,7 +105,10 @@ const handleSave = async (e: MouseEvent) => {
           return ticket;
         });
       } else {
-        const data = await createTicket(model.value);
+        const data = await createTicket({
+          ...model.value,
+          dueDate: new Date(model.value.dueDate).toISOString(),
+        });
         tickets.value.push(data as TicketResponse);
       }
     }
@@ -137,6 +142,16 @@ const handleSave = async (e: MouseEvent) => {
       <n-grid :span="24" :x-gap="24">
         <n-form-item-gi :span="24" label="Ticket Title" path="title">
           <n-input v-model:value="model.title" placeholder="Ticket Title" />
+        </n-form-item-gi>
+        <n-form-item-gi
+          :span="24"
+          label="Assigned Technician"
+          path="assignedTechnician"
+        >
+          <n-input
+            v-model:value="model.assignedTechnician"
+            placeholder="Assigned Technician"
+          />
         </n-form-item-gi>
 
         <n-form-item-gi :span="12" label="Ticket Priority" path="priority">
