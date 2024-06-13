@@ -1,25 +1,12 @@
 import type { AlertResponse } from "~/types/api";
 import { useMessage } from "naive-ui";
 import usePocketBase from "~/composables/server/usePocketbase";
-import { AlertStatusOptions, AlertSeverityOptions } from "~/types/enums";
 
 export default function () {
   const client = usePocketBase();
   const message = useMessage();
 
   const alerts = useState<AlertResponse[]>("alerts", () => []);
-
-  // Create a new device
-  const createAlert = async (data: Object) => {
-    try {
-      const res = await client.collection("alerts").create(data);
-
-      message.success("Alert created successfully");
-      return res;
-    } catch (error) {
-      message.error("Failed to create alert");
-    }
-  };
 
   // Fetch all alerts
   const fetchAlerts = async () => {
@@ -74,7 +61,6 @@ export default function () {
 
   return {
     alerts,
-    createAlert,
     fetchAlerts,
     updateAlert,
     subscribeAlert,
