@@ -35,6 +35,12 @@ const menuOptions = [
     key: "tickets",
     icon: renderIcon(TicketIcon),
   },
+  {
+    label: () =>
+      h(RouterLink, { to: "/statistics" }, { default: () => "Statistics" }),
+    key: "statistics",
+    icon: renderIcon(TicketIcon),
+  },
 ];
 </script>
 
